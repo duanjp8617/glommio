@@ -813,7 +813,7 @@ impl SleepableRing {
     }
 
     fn install_eventfd(&mut self, eventfd_src: &Source) -> bool {
-        if let Some(mut sqe) = self.ring.next_sqe() {
+        if let Some(mut sqe) = self.ring.next_sqe() {            
             self.waiting_submission += 1;
             // Now must wait on the eventfd in case someone wants to wake us up.
             // If we can't then we can't sleep and will just bail immediately
@@ -823,7 +823,7 @@ impl SleepableRing {
                 args: UringOpDescriptor::Read(0, 8),
             };
             let allocator = self.allocator.clone();
-            fill_sqe(&mut sqe, &op, |size| allocator.new_buffer(size));
+            fill_sqe(&mut sqe, &op, |size| allocator.new_buffer(size));            
             true
         } else {
             false

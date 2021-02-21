@@ -58,7 +58,7 @@ async fn server(conns: usize) -> Result<()> {
 }
 
 async fn client(clients: usize) -> Result<()> {
-    let msgs: usize = 300_000;
+    let msgs: usize = 5;
     let msg_per_client = msgs / clients;
 
     let now = Instant::now();
